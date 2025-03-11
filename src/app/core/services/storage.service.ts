@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { Injectable, PLATFORM_ID, inject } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { CodePoem } from '../models/poem.model';
 
@@ -9,8 +10,11 @@ export class StorageService {
   private readonly STORAGE_KEY = 'code_poems';
   private poems: CodePoem[] = [];
   private poemsSubject = new BehaviorSubject<CodePoem[]>([]);
+  private platformId = inject(PLATFORM_ID);
+  private isBrowser: boolean;
 
   constructor() {
+    this.isBrowser = isPlatformBrowser(this.platformId);
     this.loadPoems();
   }
 
@@ -55,10 +59,13 @@ export class StorageService {
 
   private loadPoems(): void {
     try {
-      const storage = localStorage.getItem(this.STORAGE_KEY);
-      if (storage) {
-        this.poems = JSON.parse(storage);
-        this.poemsSubject.next([...this.poems]);
+      // Only attempt to access localStorage in browser environments
+      if (this.isBrowser) {
+        const storage = localStorage.getItem(this.STORAGE_KEY);
+        if (storage) {
+          this.poems = JSON.parse(storage);
+          this.poemsSubject.next([...this.poems]);
+        }
       }
     } catch (error) {
       console.error('Error loading poems from storage', error);
@@ -67,8 +74,11 @@ export class StorageService {
 
   private savePoems(): void {
     try {
-      localStorage.setItem(this.STORAGE_KEY, JSON.stringify(this.poems));
-      this.poemsSubject.next([...this.poems]);
+      // Only attempt to access localStorage in browser environments
+      if (this.isBrowser) {
+        localStorage.setItem(this.STORAGE_KEY, JSON.stringify(this.poems));
+        this.poemsSubject.next([...this.poems]);
+      }
     } catch (error) {
       console.error('Error saving poems to storage', error);
     }
