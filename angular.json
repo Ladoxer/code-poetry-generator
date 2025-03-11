@@ -29,6 +29,11 @@
               {
                 "glob": "**/*",
                 "input": "public"
+              },
+              {
+                "glob": "robots.txt",
+                "input": "src/",
+                "output": "/"
               }
             ],
             "styles": [
