@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive, NgClass],
+  imports: [RouterLink, RouterLinkActive],
   template: `
     <header class="bg-gradient-to-r from-dark-200 to-dark-300 text-white shadow-lg">
       <div class="container mx-auto px-4 py-3">

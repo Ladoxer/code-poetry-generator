@@ -1,7 +1,6 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
 import { ColorTheme, PRESET_THEMES } from '../../core/models/theme.model';
 import { PoemGeneratorService } from '../../core/services/poem-generator.service';
 import { StorageService } from '../../core/services/storage.service';
@@ -20,7 +19,6 @@ import { isPlatformBrowser } from '@angular/common';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    RouterLink,
     HeaderComponent,
     FooterComponent,
     ButtonComponent,
