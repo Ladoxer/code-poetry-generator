@@ -13,7 +13,7 @@ import { Component } from '@angular/core';
           <span class="text-secondary-400">Tailwind CSS</span>
         </p>
         <p class="text-xs mt-1 font-mono">
-          &lt;/&gt; with ❤️ by code poets
+          &lt;/&gt; with ❤️ by Ladoxer
         </p>
       </div>
     </footer>
